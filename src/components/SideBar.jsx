@@ -16,7 +16,7 @@ const SideBar = () => {
                         </div>
                     </li>
                     <li>
-                        <NavLink href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <NavLink to={'/dashboard'} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span className="inline-flex justify-center items-center ml-4">
                                 <IoHome />
                             </span>
@@ -24,7 +24,7 @@ const SideBar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <NavLink to={'/products'} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span className="inline-flex justify-center items-center ml-4">
                                 <IoPricetag />
                             </span>
@@ -38,7 +38,7 @@ const SideBar = () => {
                         </div>
                     </li>
                     <li>
-                        <NavLink href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <NavLink to={'/users'} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span className="inline-flex justify-center items-center ml-4">
                                 <IoPerson />
                             </span>
