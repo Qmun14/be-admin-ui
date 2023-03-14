@@ -1,8 +1,20 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
-import { IoPerson, IoPricetag, IoHome, IoLogOut } from 'react-icons/io5'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { IoPerson, IoPricetag, IoHome, IoLogOut } from 'react-icons/io5';
+import { useDispatch, useSelector } from "react-redux";
+import { LogOut, reset } from "../features/authentications/authSlice";
 
 const SideBar = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { user } = useSelector((store) => store.auth);
+
+    const logout = () => {
+        dispatch(LogOut());
+        dispatch(reset());
+        navigate('/login');
+    }
+
     return (
         <div className="fixed flex flex-col top-[89px] left-0 w-64 bg-CDS_2 h-full border-r font-roboto">
             {/* <div className="flex items-center justify-center h-14 border-b">
@@ -16,7 +28,7 @@ const SideBar = () => {
                         </div>
                     </li>
                     <li>
-                        <NavLink to={'/dashboard'} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <NavLink to={'/'} className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span className="inline-flex justify-center items-center ml-4">
                                 <IoHome />
                             </span>
@@ -51,12 +63,12 @@ const SideBar = () => {
                         </div>
                     </li>
                     <li>
-                        <NavLink href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <div onClick={logout} className="relative flex flex-row cursor-pointer items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
                             <span className="inline-flex justify-center items-center ml-4">
                                 <IoLogOut />
                             </span>
                             <span className="ml-2 text-sm tracking-wide truncate">Logout</span>
-                        </NavLink>
+                        </div>
                     </li>
                 </ul>
             </div>
