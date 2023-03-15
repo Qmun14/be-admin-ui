@@ -1,0 +1,9 @@
+import Axios from 'axios';
+import { config } from '../config/index';
+
+export const getProducts = () => {
+    return Axios.get(`${config.api_url}/products`);
+}
+export const deleteProduct = (id) => {
+    return Axios.delete(`${config.api_url}/products/${id}`);
+}
