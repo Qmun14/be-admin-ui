@@ -10,3 +10,13 @@ export const getMe = () => {
 export const logoutUser = () => {
     return Axios.delete(`${config.api_url}/logout`);
 }
+
+export const getUsers = () => {
+    return Axios.get(`${config.api_url}/users`);
+}
+export const deleteUser = (id) => {
+    return Axios.delete(`${config.api_url}/users/${id}`);
+}
+export const addUser = (data) => {
+    return Axios.post(`${config.api_url}/users`, data);
+}
