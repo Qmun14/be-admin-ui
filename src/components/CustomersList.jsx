@@ -11,6 +11,7 @@ const CustomersList = () => {
     const [rows, setRows] = useState(0);
     const [keyword, setKeyword] = useState('');
     const [query, setQuery] = useState('');
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
         const searchCustomersAPI = async () => {
@@ -25,6 +26,11 @@ const CustomersList = () => {
 
     const pageChangeHandler = ({ selected }) => {
         setPage(selected);
+        if (selected === 9) {
+            setMessage('Jika tidak menemukan data yang anda cari, silahkan masukkan kata kunci spesifik!');
+        } else {
+            setMessage('');
+        }
     }
 
     const searchData = (e) => {
@@ -120,12 +126,13 @@ const CustomersList = () => {
                     {rows ? (page + 1).toLocaleString() : 0} of {pages.toLocaleString()}
                 </p>
             </div>
+            <p className='flex flex-row justify-center w-3/4 mx-1 text-red-600'>{message}</p>
             <div className="flex flex-row justify-center w-3/4 mt-1">
                 <nav className="flex flex-row justify-center w-full" key={rows}>
                     <ReactPaginate
                         previousLabel={"< Prev"}
                         nextLabel={"Next >"}
-                        pageCount={pages}
+                        pageCount={Math.min(10, pages)}
                         onPageChange={pageChangeHandler}
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
