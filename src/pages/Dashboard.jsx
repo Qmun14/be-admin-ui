@@ -4,6 +4,7 @@ import Layout from './Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMeApi } from '../features/authentications/authSlice';
+import Loading from '../components/Loading';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -21,9 +22,12 @@ const Dashboard = () => {
     }, [isError, navigate]);
 
     return (
-        <Layout>
-            <Welcome />
-        </Layout>
+        <>
+            {isError ? <Loading /> : <Layout>
+                <Welcome />
+            </Layout>}
+        </>
+
     )
 }
 

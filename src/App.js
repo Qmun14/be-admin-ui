@@ -1,32 +1,96 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import AddProduct from "./pages/AddProduct";
-import AddUser from "./pages/AddUser";
-import Customers from "./pages/Customers";
-import Dashboard from "./pages/Dashboard";
-import EditProduct from "./pages/EditProduct.";
-import EditUser from "./pages/EditUser";
-import Products from "./pages/Products";
-import Users from "./pages/Users";
-// import PrivateRoutes from "./utils/PrivateRoutes";
+import { lazy, Suspense } from "react";
+import Loading from "./components/Loading";
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Login = lazy(() => import("./components/Login"));
+const Users = lazy(() => import("./pages/Users"));
+const AddUser = lazy(() => import("./pages/AddUser"));
+const EditUser = lazy(() => import("./pages/EditUser"));
+const Products = lazy(() => import("./pages/Products"));
+const AddProduct = lazy(() => import("./pages/AddProduct"));
+const EditProduct = lazy(() => import("./pages/EditProduct."));
+const Customers = lazy(() => import("./pages/Customers"));
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          {/* <Route element={<PrivateRoutes />} > */}
+          <Route
+            index
+            path="/login"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Login />
+              </Suspense>
+            }
+          />
           <Route path='*' element={<Dashboard />} />
-          <Route index element={<Dashboard />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/users/add" element={<AddUser />} />
-          <Route path="/users/edit/:id" element={<EditUser />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/add" element={<AddProduct />} />
-          <Route path="/products/edit/:id" element={<EditProduct />} />
-          <Route path="/customers" element={<Customers />} />
-          {/* </Route> */}
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Dashboard />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Users />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/users/add"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AddUser />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/users/edit/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+                <EditUser />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Products />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products/add"
+            element={
+              <Suspense fallback={<Loading />}>
+                <AddProduct />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products/edit/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+                <EditProduct />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/customers"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Customers />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
