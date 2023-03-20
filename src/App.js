@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Loading";
+import Members from "./pages/Members";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Login = lazy(() => import("./components/Login"));
@@ -88,6 +89,14 @@ function App() {
             element={
               <Suspense fallback={<Loading />}>
                 <Customers />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/members"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Members />
               </Suspense>
             }
           />

@@ -23,9 +23,9 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-Ojol-default w-full h-screen">
+        <div className="bg-gradient-to-br from-orange-600 to-amber-900 via-orange-200  w-full h-screen">
             <div className="container flex max-w-full justify-center items-center h-full">
-                <div className="bg-Ojol_light font-roboto py-5 px-3 rounded-xl shadow-lg">
+                <div className="bg-transparent font-roboto py-5 px-3 rounded-xl  shadow-xl  opacity-75 hover:opacity-100 transition-opacity">
                     <div className="flex-col relative">
                         <form
                             onSubmit={Auth}
