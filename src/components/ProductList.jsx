@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteProduct, getProducts } from "../api/products";
 import { IoPencilOutline, IoTrash } from "react-icons/io5";
+import useSWR, { useSWRConfig } from 'swr';
 
 const ProductList = () => {
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
+    const { mutate } = useSWRConfig();
 
     useEffect(() => {
         getProductsApi();
@@ -12,12 +14,17 @@ const ProductList = () => {
 
     const getProductsApi = async () => {
         const response = await getProducts();
-        setProducts(response.data);
+        // setProducts(response.data);
+        return response.data;
     };
+
+    const { data } = useSWR("products", getProductsApi, { refreshInterval: 500 });
+    if (!data) return <h2>Loading...</h2>;
 
     const deleteProductApi = async (productId) => {
         await deleteProduct(productId);
-        getProductsApi();
+        // getProductsApi();
+        mutate("products");
     };
 
     return (
@@ -49,7 +56,7 @@ const ProductList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product, index) => (
+                        {data.map((product, index) => (
                             <tr key={index} className="bg-CDS_2 border">
                                 <td className="py-3 px-6 text-center">
                                     {index + 1}
